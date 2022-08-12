@@ -24,6 +24,9 @@ function handleSpin() {
     } else {
         handleSpin();
     }
+    if (numberOfItems !== 3) {
+        handleSpin();
+    }
 }
 
 soda.addEventListener('click', () => {
