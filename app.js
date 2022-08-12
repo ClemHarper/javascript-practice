@@ -2,13 +2,34 @@
 let numberOfItems = 0;
 
 //step 1 - grab the element from the DOM
+const spin = document.getElementById('spin');
 const soda = document.getElementById('soda');
+const cheese = document.getElementById('cheese');
+const grapes = document.getElementById('grapes');
+const bread = document.getElementById('bread');
+const watermelon = document.getElementById('watermelon');
+const menu = [soda, cheese, grapes, bread, watermelon];
 
 //step 2 - add an event listener
+spin.addEventListener('click', handleSpin);
+
+function handleSpin() {
+    const randomNum = Math.floor(Math.random() * menu.length);
+    const randomMenu = menu[randomNum];
+    if (numberOfItems === 3) return;
+    if (!randomMenu.classList.contains('picked')) {
+        randomMenu.classList.add('picked');
+        numberOfItems++;
+        items.textContent = numberOfItems;
+    } else {
+        handleSpin();
+    }
+}
+
 soda.addEventListener('click', () => {
     if (!soda.classList.contains('picked') && numberOfItems === 3) return;
     console.log('clicking');
-    //step 3 - adding the classname
+    //step 3 - adding the class name
     soda.classList.toggle('picked');
     if (soda.classList.contains('picked')) {
         numberOfItems = numberOfItems + 1;
